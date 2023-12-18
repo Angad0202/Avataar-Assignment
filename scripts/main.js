@@ -1,33 +1,51 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const dotNavItems = document.querySelectorAll('.carousel__dot-nav li');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+function priorityNav(eventType) {
 
-    dotNavItems.forEach((dotNavItem, index) => {
-        dotNavItem.addEventListener('click', function () {
-            setActiveDot(index);
-            showCarouselItem(index);
-        });
+    var navElementsWidth = 0;
+    var navElementsHiddenWidth = 0;
+    var navElementsShownWidth = 0;
+    var moreButtonWidth = $('#nav-menu .more').outerWidth(true);
+    var navWidth = $('#nav-menu').outerWidth(true);
+    var navElementsTemp = [];
+
+    $('#nav-menu > li:not(.more)').each(function() {
+
+        navElementsWidth += + $(this).outerWidth( true );
+        $(this).attr('data-width', $(this).outerWidth(true));
+
+        if ( (navElementsWidth + moreButtonWidth) >= navWidth ) {
+            navElementsTemp.push(this);
+        } else {
+            navElementsShownWidth+= + $(this).outerWidth( true );
+        }
+
     });
 
-    function setActiveDot(index) {
-        dotNavItems.forEach((dotNavItem) => {
-            dotNavItem.classList.remove('carousel__dot-nav--active');
+    $(navElementsTemp).prependTo( $('#nav-menu .more ul.more-list') );
+
+    if ( eventType === 'resize' ) {
+
+        $('.more-list > li').each(function() {
+
+            navElementsHiddenWidth += + $(this).attr('data-width');
+
+            if ( (navElementsShownWidth + navElementsHiddenWidth + moreButtonWidth) <= navWidth ) {
+                $('li.more').before( $(this) );
+            } else {
+                return false;
+            }
+
         });
-        dotNavItems[index].classList.add('carousel__dot-nav--active');
+
     }
 
-    function showCarouselItem(index) {
-        galleryItems.forEach((galleryItem) => {
-            galleryItem.classList.remove('gallery-item-active');
-        });
-        galleryItems[index].classList.add('gallery-item-active');
+    if ($('.more-list li').length > 0) {
+        $('.more').css('display','inline-block');
+    } else {
+        $('.more').css('display','none');
     }
 
-    // Auto-advance carousel every 3 seconds (adjust as needed)
-    let currentIndex = 2; // Start with the third item
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % dotNavItems.length;
-        setActiveDot(currentIndex);
-        showCarouselItem(currentIndex);
-    }, 3000);
-});
+}
+
+    $(window).on('resize load',function(e){
+        priorityNav(e.type);
+    });
