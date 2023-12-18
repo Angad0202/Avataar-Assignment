@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avataar Assignment</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li class = "logo"><img src="/public/Logo.png"></li>
+            <li class = "items" id="home"><a href="#">HOME</a></li>
+            <li class = "items"><a href="#">ELECTRONICS</a></li>
+            <li class = "items"><a href="#">BOOKS</a></li>
+            <li class = "items"><a href="#">MUSIC</a></li>
+            <li class = "items"><a href="#">MOVIES</a></li>
+            <li class = "items"><a href="#">CLOTHINGS</a></li>
+            <li class = "items"><a href="#">GAMES</a></li>
+            <li class="dropdown">
+                <a href="#">MORE</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">FURNITURE</a></li>
+                    <li><a href="#">ELECTRONICS</a></li>
+                    <li><a href="#">TRAVEL</a></li>
+                    <li><a href="#">BOTANICAL</a></li>
+                    <li><a href="#">CATEGORY NAME</a></li>
+                </ul>
+            </li>
+            <li class = "search">
+                <button><img src="/public/searchIcon.png"></button>
+                <input type="text" class="search-bar" placeholder="Search Something...">
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Featured Products</h1>
+        <p>
+            Explore and discover a variety of Products
+        </p>
+        <div class="gallery">
+            <div class="gallery-container">
+                <img class="gallery-item gallery-item-1" src="/public/Carousel/img1.png" data-index="1">
+                <img class="gallery-item gallery-item-2" src="/public/Carousel/img2.png" data-index="2">
+                <img class="gallery-item gallery-item-3" src="/public/Carousel/img3.png" data-index="3">
+                <img class="gallery-item gallery-item-4" src="/public/Carousel/img4.png" data-index="4">
+                <img class="gallery-item gallery-item-5" src="/public/Carousel/img5.png" data-index="5">
+            </div>
+            <div class="gallery-controls"></div>
+        </div>
+        <script src="/scripts/main.js"></script>
+    </main>
+</body>
+</html>
