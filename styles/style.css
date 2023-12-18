@@ -7,7 +7,6 @@
 body {
     font-family: sans-serif;
 }
-
 nav {
     background-color: #2F302C;
     padding: 15px 20px;
@@ -62,7 +61,7 @@ ul{
 .dropdown:hover .dropdown-content {
     display: block;
 }
-.dropdown-content.active {
+.dropdown:hover .dropdown-content.active {
     display: block;
 }
 .search button {
@@ -84,8 +83,20 @@ ul{
     color: #fff; 
     opacity: 0.7;
 }
-/* Carousel */
 
+.content {
+    text-align: center;
+    padding: 40px;
+    background-color: #f5f5f5; /* Add a light background color */
+}
+
+
+.carousel {
+    position: relative;
+    margin: 100px auto;
+    display: block;
+    margin-top: 40px;
+}
 .gallery {
     width: 100%;
     display: flex;
@@ -107,6 +118,19 @@ ul{
     border-radius: 15px;
     background-size: contain;
 }
+
+.gallery .gallery-container .info {
+    position: absolute;
+    text-align: center;
+    bottom: 10px;
+    color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    width: 100%;
+    
+}
+
 .gallery-item-1{
     left:50%;
     height:400px;
@@ -137,17 +161,6 @@ ul{
     transform: translate(-90%);
 }
 
-.gallery .gallery-container .info {
-    position: absolute;
-    text-align: center;
-    bottom: 10px;
-    color: #fff;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 4;
-    width: 100%;
-}
-
 .gallery .gallery-container::before {
     content: '';
     position: absolute;
@@ -158,14 +171,9 @@ ul{
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.3);
     z-index: 4;
 }
-
-
-
-/*controls*/
-
 .gallery-controls {
     display: flex;
     justify-content: center;
@@ -173,21 +181,29 @@ ul{
     margin-top: 40px;
 }
 
-.gallery-controls div:not(.btn-left):not(.btn-right){
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #ccc;
-    margin: 0 5px;
-    cursor: pointer;
-}
-.gallery-controls .btn-left,
-.gallery-controls .btn-right{
-    width: 24px;
-    height: 24px;
-    margin: 0 5px;
-    cursor: pointer;
-}
+.carousel__dot-nav {
+    text-align: center;
 
+    li {
+        margin: 0 5px;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border: 1px solid #000;
+        border-radius: 100%;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+        transition: 0.4s all;
 
-/* */
+        &:hover {
+            background-color: rgb(0, 157, 255);
+            transform: scale(1.2);
+        }
+
+        &--active {
+            background-color: #fff;
+        }
+    }
+}
